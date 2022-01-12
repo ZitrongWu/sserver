@@ -357,7 +357,7 @@ Set_config_protocol_param(){
 	# 	echo -e "${Error} 请输入正确的数字(1-9999)"
 	# fi
 	# done
-	ssr_protocol_param = 9999
+	ssr_protocol_param="9999"
 }
 Set_config_speed_limit_per_con(){
 	# while true
@@ -378,7 +378,7 @@ Set_config_speed_limit_per_con(){
 	# 	echo -e "${Error} 请输入正确的数字(1-131072)"
 	# fi
 	# done
-	ssr_speed_limit_per_con = 131072
+	ssr_speed_limit_per_con="131072"
 }
 Set_config_speed_limit_per_user(){
 	# while true
@@ -400,7 +400,7 @@ Set_config_speed_limit_per_user(){
 	# 	echo -e "${Error} 请输入正确的数字(1-131072)"
 	# fi
 	# done
-	ssr_speed_limit_per_user = 131072
+	ssr_speed_limit_per_user="131072"
 }
 Set_config_all(){
 	Set_config_port
