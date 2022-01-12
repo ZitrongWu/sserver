@@ -607,6 +607,8 @@ View_User(){
  在浏览器中，打开二维码链接，就可以看到二维码图片。
  协议和混淆后面的[ _compatible ]，指的是 兼容原版协议/混淆。"
 		echo && echo "==================================================="
+
+		for((integer = ${user_total}; integer >= 1; integer--))
 		do
 			port=`${jq_file} '.port_password' ${config_user_file} | sed '$d' | sed "1d" | awk -F ":" '{print $1}' | sed -n "${integer}p" | sed -r 's/.*\"(.+)\".*/\1/'`
 			password=`${jq_file} '.port_password' ${config_user_file} | sed '$d' | sed "1d" | awk -F ":" '{print $2}' | sed -n "${integer}p" | sed -r 's/.*\"(.+)\".*/\1/'`
@@ -617,6 +619,7 @@ View_User(){
 			echo -e "${ss_link}"
 			echo -e "${ssr_link}"
 		done
+
 		echo -e " ${Green_font_prefix} 提示: ${Font_color_suffix}
  在浏览器中，打开二维码链接，就可以看到二维码图片。
  协议和混淆后面的[ _compatible ]，指的是 兼容原版协议/混淆。"
