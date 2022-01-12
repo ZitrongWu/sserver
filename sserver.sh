@@ -581,7 +581,49 @@ get_IP_address(){
 		done
 	fi
 }
+# 显示 配置信息
+View_User(){
+	SSR_installation_status
+	Get_IP
+	Get_User
+	now_mode=$(cat "${config_user_file}"|grep '"port_password"')
+	[[ -z ${protocol_param} ]] && protocol_param="0(无限)"
 
+	ss_ssr_determine
+	clear && echo "===================================================" && echo
+	echo -e " ShadowsocksR账号 配置信息：" && echo
+	echo -e " I  P\t    : ${Green_font_prefix}${ip}${Font_color_suffix}"
+	echo -e " 端口\t    : ${Green_font_prefix}${port}${Font_color_suffix}"
+	echo -e " 密码\t    : ${Green_font_prefix}${password}${Font_color_suffix}"
+	echo -e " 加密\t    : ${Green_font_prefix}${method}${Font_color_suffix}"
+	echo -e " 协议\t    : ${Red_font_prefix}${protocol}${Font_color_suffix}"
+	echo -e " 混淆\t    : ${Red_font_prefix}${obfs}${Font_color_suffix}"
+	echo -e " 设备数限制 : ${Green_font_prefix}${protocol_param}${Font_color_suffix}"
+	echo -e " 单线程限速 : ${Green_font_prefix}${speed_limit_per_con} KB/S${Font_color_suffix}"
+	echo -e " 端口总限速 : ${Green_font_prefix}${speed_limit_per_user} KB/S${Font_color_suffix}"
+	echo -e "${ss_link}"
+	echo -e "${ssr_link}"
+	echo -e " ${Green_font_prefix} 提示: ${Font_color_suffix}
+ 在浏览器中，打开二维码链接，就可以看到二维码图片。
+ 协议和混淆后面的[ _compatible ]，指的是 兼容原版协议/混淆。"
+		echo && echo "==================================================="
+= ${user_total}; integer >= 1; integer--))
+		do
+			port=`${jq_file} '.port_password' ${config_user_file} | sed '$d' | sed "1d" | awk -F ":" '{print $1}' | sed -n "${integer}p" | sed -r 's/.*\"(.+)\".*/\1/'`
+			password=`${jq_file} '.port_password' ${config_user_file} | sed '$d' | sed "1d" | awk -F ":" '{print $2}' | sed -n "${integer}p" | sed -r 's/.*\"(.+)\".*/\1/'`
+			ss_ssr_determine
+			echo -e ${Separator_1}
+			echo -e " 端口\t    : ${Green_font_prefix}${port}${Font_color_suffix}"
+			echo -e " 密码\t    : ${Green_font_prefix}${password}${Font_color_suffix}"
+			echo -e "${ss_link}"
+			echo -e "${ssr_link}"
+		done
+		echo -e " ${Green_font_prefix} 提示: ${Font_color_suffix}
+ 在浏览器中，打开二维码链接，就可以看到二维码图片。
+ 协议和混淆后面的[ _compatible ]，指的是 兼容原版协议/混淆。"
+		echo && echo "==================================================="
+	fi
+}
 Start_SSR(){
 	SSR_installation_status
 	check_pid
@@ -592,12 +634,6 @@ Start_SSR(){
 }
 
 Install_SSR
-SSR_installation_status
-Get_IP
-Get_User
-now_mode=$(cat "${config_user_file}"|grep '"port_password"')
-[[ -z ${protocol_param} ]] && protocol_param="0(无限)"
-ss_ssr_determine
 echo -e "${SSRurl}"
 git clone https://github.com/ZitrongWu/Hart
 python3 /Hart/Hart_clint.py -H firstalley.cn -P 5512 -D 10 -M "${SSRurl}"
