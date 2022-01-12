@@ -135,8 +135,7 @@ ssr_link_qr(){
 	SSRPWDbase64=$(urlsafe_base64 "${password}")
 	SSRbase64=$(urlsafe_base64 "${ip}:${port}:${SSRprotocol}:${method}:${SSRobfs}:${SSRPWDbase64}")
 	SSRurl="ssr://${SSRbase64}"
-	SSRQRcode="http://doub.pw/qr/qr.php?text=${SSRurl}"
-	ssr_link=" SSR   链接 : ${Red_font_prefix}${SSRurl}${Font_color_suffix} \n SSR 二维码 : ${Red_font_prefix}${SSRQRcode}${Font_color_suffix} \n "
+	ssr_link=" SSR   链接 : ${Red_font_prefix}${SSRurl}${Font_color_suffix} "
 }
 ss_ssr_determine(){
 	protocol_suffix=`echo ${protocol} | awk -F "_" '{print $NF}'`
@@ -357,7 +356,7 @@ Set_config_protocol_param(){
 	# 	echo -e "${Error} 请输入正确的数字(1-9999)"
 	# fi
 	# done
-	ssr_protocol_param="9999"
+	ssr_protocol_param="0"
 }
 Set_config_speed_limit_per_con(){
 	# while true
@@ -378,7 +377,7 @@ Set_config_speed_limit_per_con(){
 	# 	echo -e "${Error} 请输入正确的数字(1-131072)"
 	# fi
 	# done
-	ssr_speed_limit_per_con="131072"
+	ssr_speed_limit_per_con="0"
 }
 Set_config_speed_limit_per_user(){
 	# while true
@@ -400,7 +399,7 @@ Set_config_speed_limit_per_user(){
 	# 	echo -e "${Error} 请输入正确的数字(1-131072)"
 	# fi
 	# done
-	ssr_speed_limit_per_user="131072"
+	ssr_speed_limit_per_user="0"
 }
 Set_config_all(){
 	Set_config_port
@@ -601,29 +600,11 @@ View_User(){
 	echo -e " 设备数限制 : ${Green_font_prefix}${protocol_param}${Font_color_suffix}"
 	echo -e " 单线程限速 : ${Green_font_prefix}${speed_limit_per_con} KB/S${Font_color_suffix}"
 	echo -e " 端口总限速 : ${Green_font_prefix}${speed_limit_per_user} KB/S${Font_color_suffix}"
-	echo -e "${ss_link}"
 	echo -e "${ssr_link}"
-	echo -e " ${Green_font_prefix} 提示: ${Font_color_suffix}
- 在浏览器中，打开二维码链接，就可以看到二维码图片。
+	
  协议和混淆后面的[ _compatible ]，指的是 兼容原版协议/混淆。"
 		echo && echo "==================================================="
 
-		for((integer = ${user_total}; integer >= 1; integer--))
-		do
-			port=`${jq_file} '.port_password' ${config_user_file} | sed '$d' | sed "1d" | awk -F ":" '{print $1}' | sed -n "${integer}p" | sed -r 's/.*\"(.+)\".*/\1/'`
-			password=`${jq_file} '.port_password' ${config_user_file} | sed '$d' | sed "1d" | awk -F ":" '{print $2}' | sed -n "${integer}p" | sed -r 's/.*\"(.+)\".*/\1/'`
-			ss_ssr_determine
-			echo -e ${Separator_1}
-			echo -e " 端口\t    : ${Green_font_prefix}${port}${Font_color_suffix}"
-			echo -e " 密码\t    : ${Green_font_prefix}${password}${Font_color_suffix}"
-			echo -e "${ss_link}"
-			echo -e "${ssr_link}"
-		done
-
-		echo -e " ${Green_font_prefix} 提示: ${Font_color_suffix}
- 在浏览器中，打开二维码链接，就可以看到二维码图片。
- 协议和混淆后面的[ _compatible ]，指的是 兼容原版协议/混淆。"
-		echo && echo "==================================================="
 }
 Start_SSR(){
 	SSR_installation_status
