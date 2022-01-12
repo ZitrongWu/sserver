@@ -602,8 +602,9 @@ View_User(){
 	echo -e " 端口总限速 : ${Green_font_prefix}${speed_limit_per_user} KB/S${Font_color_suffix}"
 	echo -e "${ssr_link}"
 	
+echo -e " ${Green_font_prefix} 提示: ${Font_color_suffix}
  协议和混淆后面的[ _compatible ]，指的是 兼容原版协议/混淆。"
-		echo && echo "==================================================="
+		echo && echo"==================================================="
 
 }
 Start_SSR(){
