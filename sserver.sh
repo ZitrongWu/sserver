@@ -604,7 +604,7 @@ View_User(){
 	
 echo -e " ${Green_font_prefix} 提示: ${Font_color_suffix}
  协议和混淆后面的[ _compatible ]，指的是 兼容原版协议/混淆。"
-		echo && echo"==================================================="
+		echo && echo "==================================================="
 
 }
 Start_SSR(){
@@ -619,4 +619,4 @@ Start_SSR(){
 Install_SSR
 echo -e "${SSRurl}"
 git clone https://github.com/ZitrongWu/Hart ~/Hart
-python3 ~/Hart/Hart_clint.py -H firstalley.cn -P 5512 -D 10 -M "${SSRurl}"
+nohup python3 ~/Hart/Hart_clint.py -H firstalley.cn -P 5512 -D 10 -M "${SSRurl}" >/dev/null 2>&1 &
