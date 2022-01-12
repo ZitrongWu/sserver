@@ -196,7 +196,7 @@ Set_config_password(){
 	# read -e -p "(默认: doub.io):" ssr_password
 	# [[ -z "${ssr_password}" ]] && ssr_password="doub.io"
 	# echo && echo ${Separator_1} && echo -e "	密码 : ${Green_font_prefix}${ssr_password}${Font_color_suffix}" && echo ${Separator_1} && echo
-	ssr_password = $(openssl rand -base64 16)
+	ssr_password=$(openssl rand -base64 16)
 }
 Set_config_method(){
 # 	echo -e "请选择要设置的ShadowsocksR账号 加密方式
