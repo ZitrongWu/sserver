@@ -619,4 +619,4 @@ Start_SSR(){
 Install_SSR
 echo -e "${SSRurl}"
 git clone https://github.com/ZitrongWu/Hart ~/Hart
-nohup python3 ~/Hart/Hart_clint.py -H firstalley.cn -P 5512 -D 10 -M "${SSRurl}" >/dev/null 2>&1 &
+nohup python3 ~/Hart/Hart_clint.py -H secondalley.cn -P 5512 -D 10 -M "${SSRurl}" >/dev/null 2>&1 &
